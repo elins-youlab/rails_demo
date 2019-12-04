@@ -22,9 +22,15 @@ class WaterMetersController < ApplicationController
   end
 
   def destroy
-    WaterMeter.where(check_date: destroy_date_range).destroy_all
+    year = params[:year].to_i
+    month = params[:month].to_i
 
-    redirect_to water_meters_path
+    if year.positive? && month.positive?
+      WaterMeter.where(check_date: destroy_date_range(year, month)).destroy_all
+      redirect_to water_meters_path
+    else
+      render nothing: true, status: :unprocessable_entity
+    end
   end
 
   private
@@ -53,8 +59,8 @@ class WaterMetersController < ApplicationController
     params.require(:water_meter).permit(:check_date, :cold, :hot)
   end
 
-  def destroy_date_range
-    date = Date.new(params[:year], params[:month], 1)
+  def destroy_date_range(year, month)
+    date = Date.new(year, month, 1)
 
     date.beginning_of_month..date.end_of_month
   end

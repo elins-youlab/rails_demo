@@ -1,5 +1,5 @@
 header.jumbotron.text-center
-  h1 Показатели счетчиков воды
+  h1= t('.title')
   nav
     ul.nav.nav-pills.justify-content-center
       li.nav-item
@@ -20,18 +20,23 @@ main.container
       table.table.table-bordered.table-striped
         thead
           tr
-            th rowspan="2" Месяц
-            th colspan="2" Показатели воды
+            th rowspan="2"= t('.month')
+            th colspan="3"= t('.water_meters')
           tr
-            th Холодная
-            th Горячая
+            th= WaterMeter.human_attribute_name(:cold)
+            th= WaterMeter.human_attribute_name(:hot)
+            th
         tbody
           - 12.times do |month_number|
             - water_meter = @water_meter_by_months[month_number + 1]
             tr
-              th= month_name(month_number)
+              th= t('.month_names')[month_number]
               td= water_meter&.cold
               td= water_meter&.hot
+              td
+                = link_to t('.destroy_link'),
+                        destroy_by_month_water_meters_path(params[:year], month_number + 1),
+                        method: :delete
     aside.col-sm-4
       = simple_form_for(@water_meter) do |f|
         = f.input :check_date, html5: true

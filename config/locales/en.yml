@@ -1,17 +1,4 @@
 en:
-  month_names:
-  - January
-  - February
-  - March
-  - April
-  - May
-  - June
-  - July
-  - August
-  - September
-  - October
-  - November
-  - December
   activerecord:
     models:
       water_meter: water meters data
@@ -20,8 +7,29 @@ en:
         cold: Cold
         hot: Hot
         check_date: Date
+
   helpers:
     submit:
       water_meter:
         create: Send
         update: Send
+
+  water_meters:
+    index:
+      title: Показатели счетчиков воды
+      month: Месяц
+      water_meters: Показатели воды
+      destroy_link: Удалить
+      month_names:
+      - January
+      - February
+      - March
+      - April
+      - May
+      - June
+      - July
+      - August
+      - September
+      - October
+      - November
+      - December

@@ -8,7 +8,7 @@ Rails.application.routes.draw do
           defaults: { year: Date.current.year },
           as: :by_year
 
-      delete '/:year/:month', action: :destroy
+      delete '/:year/:month', action: :destroy, as: :destroy_by_month
     end
   end
 end
