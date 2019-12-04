@@ -33,14 +33,10 @@ main.container
               td= water_meter&.cold
               td= water_meter&.hot
     aside.col-sm-4
-      form
-        .form-group
-          label for="date"  Дата
-          input#date.form-control name="date" type="date" /
-        fieldset.form-group
+      = simple_form_for(@water_meter) do |f|
+        = f.input :check_date, html5: true
+        fieldset
           legend Показатели воды
-          label.mr-sm-2 for="cold"  Холодная
-          input#cold.form-control name="cold" type="number" /
-          label.mr-sm-2 for="hot"  Горячая
-          input#hot.form-control name="hot" type="number" /
-        button.btn.btn-outline-primary Отправить
+          = f.input :cold
+          = f.input :hot
+        = f.submit class: ['btn', 'btn-outline-primary']

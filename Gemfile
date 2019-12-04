@@ -32,6 +32,8 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 gem 'slim'
 
+gem 'rails-i18n', '~> 6.0.0'
+
 gem 'simple_form'
 
 group :development, :test do

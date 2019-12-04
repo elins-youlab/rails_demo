@@ -12,3 +12,16 @@ ru:
   - Октябрь
   - Ноябрь
   - Декабрь
+  activerecord:
+    models:
+      water_meter: показания счетчиков
+    attributes:
+      water_meter:
+        cold: Холодная
+        hot: Горячая
+        check_date: Дата
+  helpers:
+    submit:
+      water_meter:
+        create: Отправить
+        update: Отправить

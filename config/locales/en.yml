@@ -12,3 +12,16 @@ en:
   - October
   - November
   - December
+  activerecord:
+    models:
+      water_meter: water meters data
+    attributes:
+      water_meter:
+        cold: Cold
+        hot: Hot
+        check_date: Date
+  helpers:
+    submit:
+      water_meter:
+        create: Send
+        update: Send
