@@ -1,83 +1,46 @@
-body
-  header.jumbotron.text-center
-    h1 Показатели счетчиков воды
-    nav
-      ul.nav.nav-pills.justify-content-center
-        li.nav-item
-          a.nav-link href="2017.html"  2017
-        li.nav-item
-          a.nav-link href="2018.html"  2018
-        li.nav-item
-          a.nav-link.disabled.active 2019
-  main.container
-    .row
-      .col-sm-8
-        table.table.table-bordered.table-striped
-          thead
+header.jumbotron.text-center
+  h1 Показатели счетчиков воды
+  nav
+    ul.nav.nav-pills.justify-content-center
+      li.nav-item
+        = link_to Date.current.year - 2,
+                by_year_water_meters_path(year: Date.current.year - 2),
+                class: ['nav-link']
+      li.nav-item
+        = link_to Date.current.year - 1,
+                by_year_water_meters_path(year: Date.current.year - 1),
+                class: ['nav-link']
+      li.nav-item
+        = link_to Date.current.year,
+                water_meters_path,
+                class: ['nav-link']
+main.container
+  .row
+    .col-sm-8
+      table.table.table-bordered.table-striped
+        thead
+          tr
+            th rowspan="2" Месяц
+            th colspan="2" Показатели воды
+          tr
+            th Холодная
+            th Горячая
+        tbody
+          - 12.times do |month_number|
+            - water_meter = @water_meter_by_months[month_number + 1]
             tr
-              th rowspan="2"  Месяц
-              th colspan="2"  Показатели воды
-            tr
-              th Холодная
-              th Горячая
-          tbody
-            tr
-              th Январь
-              td 179
-              td 50
-            tr
-              th Февраль
-              td 184
-              td 53
-            tr
-              th Март
-              td 190
-              td 57
-            tr
-              th Апрель
-              td 193
-              td 59
-            tr
-              th Май
-              td 198
-              td 62
-            tr
-              th Июнь
-              td 202
-              td 64
-            tr
-              th Июль
-              td 205
-              td 66
-            tr
-              th Август
-              td 206
-              td 66
-            tr
-              th Сентябрь
-              td 212
-              td 68
-            tr
-              th Октябрь
-              td 217
-              td 72
-            tr
-              th Ноябрь
-              td
-              td
-            tr
-              th Декабрь
-              td
-              td
-      aside.col-sm-4
-        form
-          .form-group
-            label for="date"  Дата
-            input#date.form-control name="date" type="date" /
-          fieldset.form-group
-            legend Показатели воды
-            label.mr-sm-2 for="cold"  Холодная
-            input#cold.form-control name="cold" type="number" /
-            label.mr-sm-2 for="hot"  Горячая
-            input#hot.form-control name="hot" type="number" /
-          button.btn.btn-outline-primary Отправить
+              th= month_name(month_number)
+              td= water_meter&.cold
+              td= water_meter&.hot
+    aside.col-sm-4
+      form
+        .form-group
+          label for="date"  Дата
+          input#date.form-control name="date" type="date" /
+        fieldset.form-group
+          legend Показатели воды
+          label.mr-sm-2 for="cold"  Холодная
+          input#cold.form-control name="cold" type="number" /
+          label.mr-sm-2 for="hot"  Горячая
+          input#hot.form-control name="hot" type="number" /
+        button.btn.btn-outline-primary Отправить
